@@ -1,5 +1,5 @@
 import { LitElement } from 'lit';
-import { customElement, eventOptions, property } from 'lit/decorators.js';
+import { customElement, property } from 'lit/decorators.js';
 
 //@ts-ignore
 @customElement('data-dm')

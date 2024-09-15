@@ -1,4 +1,4 @@
-import { LitElement, html, css } from 'lit';
+import { LitElement, html } from 'lit';
 import styles from './detail-view-styles.js';
 import { customElement, property } from 'lit/decorators.js';
 
@@ -6,7 +6,16 @@ import { customElement, property } from 'lit/decorators.js';
 @customElement('detail-view')
 export class DetailView extends LitElement {
   @property({ type: Object })
-  item = {};
+  item = {
+    image: '',
+    name: '',
+    status: '',
+    species: '',
+    location: {
+      name: ''
+    },
+    gender: ''
+  };
 
   static styles = [styles];
 

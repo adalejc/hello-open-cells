@@ -14,7 +14,7 @@ export class ModalBasic extends LitElement {
   textTitle = '';
 
   @eventOptions({passive: true})
-  private _tooggleModal(event: Event) {
+  private _tooggleModal() {
     this.visible = !this.visible;
     this.dispatchEvent(new CustomEvent('toggle-modal', { detail: this.visible }));
   }
@@ -25,7 +25,7 @@ export class ModalBasic extends LitElement {
         <div id='myModal' class='modal-contenido'>
           <div>
             <span><strong>${this.textTitle}</strong></span>
-            <button class='btn-close' @click='${this._tooggleModal}'>Cerrar</button>
+            <button class='btn-close' @click='${() => this._tooggleModal()}'>Cerrar</button>
           </div>
           <slot></slot>
         </div>

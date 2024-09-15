@@ -20,16 +20,18 @@ export class HomePage extends LitElement {
   listItems = [];
 
   @property({ type: Object })
-  selectedItem = {};
+  selectedItem = {
+    name: ''
+  };
 
   @property({ type: Boolean })
   visible = false;
 
   @query('data-dm')
-  api;
+  _api: any;
 
   onPageEnter() {
-    this.api?.getData();
+    this._api?.getData();
   }
 
   get dataTemplate() {
@@ -46,12 +48,12 @@ export class HomePage extends LitElement {
 
   get itemsTemplate() {
     return html`
-      ${this.listItems.map((item) => html`
-        <div class='card' @click=${() => this.getCharacterById(item?.id)}>
-          <div id='${item.id}' class='card-content'>
-            <h2>${item.name}</h2>
-            <img src='${item.image}' alt='${item.name}' loading='lazy' />
-            <p>${item.species} / ${item.status}</p>
+      ${this.listItems.map(({id, name, image, status, species }) => html`
+        <div class='card' @click=${() => this.getCharacterById(id)}>
+          <div id='${id}' class='card-content'>
+            <h2>${name}</h2>
+            <img src='${image}' alt='${name}' loading='lazy' />
+            <p>${species} / ${status}</p>
           </div>
         </div>
       `)}
@@ -60,7 +62,7 @@ export class HomePage extends LitElement {
 
   getCharacterById(id: number) {
     if (id) {
-      this.api.getCharacterById(id);
+      this._api.getCharacterById(id);
     }
   }
 
@@ -75,7 +77,7 @@ export class HomePage extends LitElement {
         ${this.dataTemplate}
         <modal-basic 
           ?visible='${this.visible}'
-          text-title="${this.selectedItem && this.selectedItem?.name || 'Detalles'}"
+          text-title="${this.selectedItem && this.selectedItem.name || 'Detalles'}"
           @toggle-modal='${() => this.visible = !this.visible}'
         >
           <detail-view .item=${this.selectedItem}></detail-view>
