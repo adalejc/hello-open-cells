@@ -12,12 +12,12 @@
   },
   "dependencies": {
     "@open-cells/core": "^1.0.1",
-    "@open-cells/element-controller": "^1.0.1",
+    "@open-cells/element-controller": "^1.0.2",
     "@open-cells/page-controller": "^1.0.1",
     "lit": "^3.0.0"
   },
   "devDependencies": {
-    "typescript": "^5.4.5",
+    "typescript": "^5.3.3",
     "vite": "^5.2.7"
   },
   "engines": {
